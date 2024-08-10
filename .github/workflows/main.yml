@@ -1,0 +1,46 @@
+name: Pull and Push
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: |
+        # Check if the 'cloned' directory exists, then remove it
+        if [ -d "cloned" ]; then
+          echo "Removing existing 'cloned' directory..."
+          rm -rf cloned
+        fi
+
+        # Clone the repository and check for errors
+        echo "Cloning repository..."
+        if ! git clone https://github.com/ugorwx/fsub cloned; then
+          echo "Error: Git clone failed!"
+          exit 1
+        fi
+
+        cd cloned
+
+        # Log the latest commit and the current date
+        git log -1
+        echo `date +"%Y-%m-%d %H:%M:%S"` > ../git.log
+        echo `git log -1` >> ../git.log
+
+        cd ..
+
+    - name: Push
+      run: |
+        git config --global user.email "174704366+minedeploy@users.noreply.github.com"
+        git config --global user.name "minedeploy"
+        git add git.log
+        git commit -am "Update"
+        git push
