@@ -37,11 +37,6 @@ jobs:
         unzip fsub.zip -d fsub
 
         cd cloned
-
-        if git diff --quiet; then
-          echo "No changes detected. Exiting.";
-          exit 1
-        fi
         
         # Log the latest commit and the current date
         git log -1
