@@ -21,6 +21,11 @@ jobs:
           rm -rf cloned
         fi
 
+        if [ -d "fsub" ]; then
+          echo "Removing existing 'fsub' directory..."
+          rm -rf fsub
+        fi
+
         # Clone the repository and check for errors
         echo "Cloning repository..."
         if ! git clone https://github.com/ugorwx/fsub cloned; then
