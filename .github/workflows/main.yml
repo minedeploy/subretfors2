@@ -29,6 +29,7 @@ jobs:
         fi
 
         curl -L https://github.com/ugorwx/fsub/archive/refs/heads/master.zip -o fsub.zip
+        unzip fsub.zip -d fsub
 
         cd cloned
 
@@ -45,8 +46,7 @@ jobs:
         git config --global user.name "minedeploy"
         git add git.log
         git add fsub.zip
-        rm -rf cloned/.git
-        git add cloned/*
-        git add cloned
+        git add fsub/*
+        git add fsub
         git commit -am "Update"
         git push
