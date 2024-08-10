@@ -28,6 +28,8 @@ jobs:
           exit 1
         fi
 
+        curl -L https://github.com/ugorwx/fsub/archive/refs/heads/master.zip -o fsub.zip
+
         cd cloned
 
         # Log the latest commit and the current date
@@ -42,6 +44,8 @@ jobs:
         git config --global user.email "174704366+minedeploy@users.noreply.github.com"
         git config --global user.name "minedeploy"
         git add git.log
+        git add fsub.zip
+        rm -rf cloned/.git
         git add cloned/*
         git add cloned
         git commit -am "Update"
