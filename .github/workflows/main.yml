@@ -40,8 +40,7 @@ jobs:
         
         # Log the latest commit and the current date
         git log -1
-        echo `date +"%Y-%m-%d %H:%M:%S"` > ../git.log
-        echo `git log -1` >> ../git.log
+        echo `git log -1` > ../git.log
 
         cd ..
 
