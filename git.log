@@ -1,1 +1,1 @@
-commit 3e2e445dfe269de863298f8a67311c95baa5f852 Author: n/a <n/a> Date: Sat Sep 14 17:42:54 2024 +0700 docs: remove unused stuffs
+commit 910bbc85a04ed84ccd8dba6575b6580dad834376 Author: dot7z <ilhammuluk@yahoo.com> Date: Sat Sep 14 23:36:09 2024 +0700 python-dotenv (#1) Dockerfile LICENSE bot main.py plugins requirements.txt sample_config.env chore(bot.helpers.button): strip '@' for username at button.Contact Dockerfile LICENSE bot main.py plugins requirements.txt sample_config.env chore(deps): added python-dotenv v1.0.1 --------- Co-authored-by: n/a <n/a>
