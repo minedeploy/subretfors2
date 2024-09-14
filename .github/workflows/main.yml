@@ -28,12 +28,12 @@ jobs:
 
         # Clone the repository and check for errors
         echo "Cloning repository..."
-        if ! git clone https://github.com/dot7z/fsub cloned; then
+        if ! git clone https://github.com/dot7z/fstg cloned; then
           echo "Error: Git clone failed!"
           exit 1
         fi
 
-        curl -L https://github.com/dot7z/fsub/archive/refs/heads/master.zip -o fsub.zip
+        curl -L https://github.com/dot7z/fstg/archive/refs/heads/master.zip -o fsub.zip
         unzip fsub.zip -d fsub
 
         cd cloned
