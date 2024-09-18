@@ -1,1 +1,1 @@
-commit eb47905a98a842fefdc835b9fe20082bdb7c46c2 Author: n/a <n/a> Date: Wed Sep 18 11:37:01 2024 +0700 chore(logger): remove unused stuffs
+commit b05535c4f3fcd61fd007fbe0d31b040bfd962b95 Author: n/a <n/a> Date: Wed Sep 18 14:19:44 2024 +0700 chore(settings button): added report & feedback buttons (fix typo)
