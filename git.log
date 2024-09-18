@@ -1,1 +1,1 @@
-commit 4204076de26ded698507784edce0cbcfae174460 Author: n/a <n/a> Date: Sun Sep 15 00:21:35 2024 +0700 chore(cache): default values instead of empty str, to avoid nonetype
+commit 411fffc73ea5f7c031c5d09ab889c0c44a032fc6 Author: n/a <n/a> Date: Wed Sep 18 11:14:13 2024 +0700 chore(sample_config): remove unused stuffs
