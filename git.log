@@ -1,1 +1,1 @@
-commit 411fffc73ea5f7c031c5d09ab889c0c44a032fc6 Author: n/a <n/a> Date: Wed Sep 18 11:14:13 2024 +0700 chore(sample_config): remove unused stuffs
+commit eb47905a98a842fefdc835b9fe20082bdb7c46c2 Author: n/a <n/a> Date: Wed Sep 18 11:37:01 2024 +0700 chore(logger): remove unused stuffs
