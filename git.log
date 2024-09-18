@@ -1,1 +1,1 @@
-commit b05535c4f3fcd61fd007fbe0d31b040bfd962b95 Author: n/a <n/a> Date: Wed Sep 18 14:19:44 2024 +0700 chore(settings button): added report & feedback buttons (fix typo)
+commit 3b9f27981958057891236990fc03c92fe9472f9c Author: dot7z <ilhammuluk@yahoo.com> Date: Wed Sep 18 14:56:46 2024 +0700 chore(deps): use poetry (#3) Co-authored-by: n/a <n/a>
