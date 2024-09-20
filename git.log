@@ -1,1 +1,1 @@
-commit 3b9f27981958057891236990fc03c92fe9472f9c Author: dot7z <ilhammuluk@yahoo.com> Date: Wed Sep 18 14:56:46 2024 +0700 chore(deps): use poetry (#3) Co-authored-by: n/a <n/a>
+commit 07f5808bd601ae2b5bf3b7db8d060f2b4613afc3 Author: n/a <n/a> Date: Sat Sep 21 03:31:03 2024 +0700 Revert "chore(deps): use poetry (#3)" This reverts commit 3b9f27981958057891236990fc03c92fe9472f9c.
