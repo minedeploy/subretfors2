@@ -1,15 +1,17 @@
-# Base image for building dependencies
+# Stage 1: Build image for installing dependencies
 FROM python:3.11.10-alpine3.20 AS builder
 
-# Environment Variables for Poetry and Python
+# Set environment variables for Poetry and Python
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1 \
     POETRY_VIRTUALENVS_CREATE=false \
-    POETRY_NO_INTERACTION=1
+    POETRY_NO_INTERACTION=1 \
+    # Adding poetry installation directory to PATH
+    PATH="/root/.local/bin:$PATH"
 
-# Install essential build dependencies
+# Install essential system packages and build dependencies
 RUN apk add --no-cache \
     tzdata \
     bash \
@@ -22,33 +24,35 @@ RUN apk add --no-cache \
     zlib-dev \
     sqlite-dev
 
-# Set timezone to Asia/Jakarta
+# Set the system timezone to Asia/Jakarta
 RUN cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo "Asia/Jakarta" > /etc/timezone
 
-# Install Poetry
+# Install Poetry package manager
 RUN curl -sSL https://install.python-poetry.org | python3 -
 
 # Define the working directory
 WORKDIR /app
 
-# Copy pyproject.toml and poetry.lock to install dependencies
+# Copy Poetry configuration files
 COPY pyproject.toml poetry.lock ./
 
-# Install Python dependencies using Poetry
+# Install project dependencies without creating a virtual environment
 RUN poetry install --no-root
 
-# Final stage for a lightweight image
+# Stage 2: Final lightweight image
 FROM python:3.11.10-alpine3.20 AS final
 
-# Environment Variables for running the application
+# Set environment variables for Python runtime
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    # Adding poetry installation directory to PATH
+    PATH="/root/.local/bin:$PATH"
 
-# Create a non-root user for security
+# Add a non-root user for security
 RUN adduser -D -g '' appuser
 
-# Set timezone in the final image
+# Set the system timezone in the final image
 RUN apk add --no-cache tzdata \
     && cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo "Asia/Jakarta" > /etc/timezone \
@@ -57,17 +61,19 @@ RUN apk add --no-cache tzdata \
 # Define the working directory
 WORKDIR /app
 
-# Copy Python dependencies from the builder stage
+# Copy installed dependencies from the builder stage
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
-COPY --from=builder /usr/local/bin/poetry /usr/local/bin/poetry
+
+# Copy poetry binary from the builder stage
+COPY --from=builder /root/.local /root/.local
 
 # Copy the application source code
 COPY . .
 
-# Change ownership of the application files to the non-root user
+# Adjust ownership of application files to the non-root user
 RUN chown -R appuser:appuser /app
 
-# Switch to the non-root user
+# Switch to the non-root user for executing the application
 USER appuser
 
 # Default command to run the application
