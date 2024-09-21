@@ -1,1 +1,1 @@
-commit 8bda21df8f079e43056a3f08e1e560c0a2fd5953 Author: n/a <n/a> Date: Sat Sep 21 13:38:52 2024 +0700 feat: easy deploy to heroku
+commit 0c6f4c009cd1c14814762da5fabddd440650ecbf Author: n/a <n/a> Date: Sat Sep 21 13:51:10 2024 +0700 chore(pre-commit): bump black from 24.4.2 to 24.8.0
