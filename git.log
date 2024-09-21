@@ -1,1 +1,1 @@
-commit eabd32bc1f3fcab2caa6dc5c086603236f75aa62 Author: n/a <n/a> Date: Sat Sep 21 17:59:57 2024 +0700 chore(deps): deprecated python-dotenv
+commit 17a47f157e700ef81af9486fa18f7c2c55d613df Author: n/a <n/a> Date: Sun Sep 22 00:16:28 2024 +0700 chore: remove unused func

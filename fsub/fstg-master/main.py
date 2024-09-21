@@ -8,18 +8,13 @@ try:
 except ImportError:
     pass
 
-from typing import Union
 
 import aiofiles.os
-from hydrogram import errors
-from hydrogram.enums import ParseMode
-from hydrogram.helpers import ikb
 
 from bot import (
     BotError,
     aiofiles_read,
     bot,
-    button,
     cache,
     config,
     del_broadcast_data_id,
@@ -27,29 +22,6 @@ from bot import (
     initial_database,
     logger,
 )
-
-
-async def send_msg_to_admins(
-    msg_text: str,
-    parse_mode: Union[ParseMode.HTML, ParseMode.MARKDOWN] = ParseMode.HTML,
-) -> None:
-    """
-    Sends a message to the bot administrators.
-
-    Args:
-        msg_text (str): The message text to send.
-    """
-    contact_button = ikb(button.Contact)
-    for admin in cache.admins:
-        try:
-            await bot.send_message(
-                chat_id=admin,
-                text=msg_text,
-                reply_markup=contact_button,
-                parse_mode=parse_mode,
-            )
-        except errors.RPCError:
-            continue
 
 
 async def send_restart_msg(chat_id: int, message_id: int, text: str) -> None:
