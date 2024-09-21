@@ -1,1 +1,1 @@
-commit 17a47f157e700ef81af9486fa18f7c2c55d613df Author: n/a <n/a> Date: Sun Sep 22 00:16:28 2024 +0700 chore: remove unused func
+commit 0abbd44ecfc52df731862a715c672fc30b9babbf Author: n/a <n/a> Date: Sun Sep 22 02:21:48 2024 +0700 chore(BotCommand): removed restart command

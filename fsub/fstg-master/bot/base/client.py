@@ -81,7 +81,6 @@ class Bot(Client):
                     BotCommand("ping", "Server Latency"),
                     BotCommand("uptime", "Bot Uptime"),
                     BotCommand("privacy", "Privacy Policy"),
-                    BotCommand("restart", "Restart Bot (Admin)"),
                 ],
                 scope=BotCommandScopeAllPrivateChats(),
             )
