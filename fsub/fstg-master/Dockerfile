@@ -1,37 +1,65 @@
-# Base image: Python 3.11 with Alpine
-FROM python:3.11-alpine
+# Base image for building dependencies
+FROM python:3.11.10-alpine3.20 AS builder
 
-# Environment Variables
+# Environment Variables for Poetry and Python
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
+    POETRY_NO_INTERACTION=1
 
-# Security: Create a non-root user
-RUN adduser -D appuser
-
-# Define the working directory
-WORKDIR /app
-
-# Install essential system dependencies
+# Install essential build dependencies
 RUN apk add --no-cache \
     tzdata \
+    bash \
+    curl \
+    && apk add --no-cache --virtual .build-deps \
     gcc \
     musl-dev \
     libffi-dev \
     openssl-dev \
     zlib-dev \
-    curl \
-    sqlite-dev \
+    sqlite-dev
+
+# Set timezone to Asia/Jakarta
+RUN cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
+    && echo "Asia/Jakarta" > /etc/timezone
+
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+
+# Define the working directory
+WORKDIR /app
+
+# Copy pyproject.toml and poetry.lock to install dependencies
+COPY pyproject.toml poetry.lock ./
+
+# Install Python dependencies using Poetry
+RUN poetry install --no-root
+
+# Final stage for a lightweight image
+FROM python:3.11.10-alpine3.20 AS final
+
+# Environment Variables for running the application
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Create a non-root user for security
+RUN adduser -D -g '' appuser
+
+# Set timezone in the final image
+RUN apk add --no-cache tzdata \
     && cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo "Asia/Jakarta" > /etc/timezone \
-    && rm -rf /var/cache/apk/*
+    && apk del --no-cache tzdata
 
-# Copy requirements.txt to install dependencies
-COPY requirements.txt ./
+# Define the working directory
+WORKDIR /app
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy Python dependencies from the builder stage
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=builder /usr/local/bin/poetry /usr/local/bin/poetry
 
 # Copy the application source code
 COPY . .
@@ -43,4 +71,4 @@ RUN chown -R appuser:appuser /app
 USER appuser
 
 # Default command to run the application
-CMD ["python", "main.py"]
+CMD ["poetry", "run", "python", "main.py"]

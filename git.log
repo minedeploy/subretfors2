@@ -1,1 +1,1 @@
-commit 0c6f4c009cd1c14814762da5fabddd440650ecbf Author: n/a <n/a> Date: Sat Sep 21 13:51:10 2024 +0700 chore(pre-commit): bump black from 24.4.2 to 24.8.0
+commit 67244bfef8c440fd0f0dc1a455d50ed4749cc410 Author: n/a <n/a> Date: Sat Sep 21 14:33:25 2024 +0700 chore(Dockerfile): multi-stage
