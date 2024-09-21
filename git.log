@@ -1,1 +1,1 @@
-commit ffe685cfbfb6647a8567308a24e036c6db22b541 Author: n/a <n/a> Date: Sat Sep 21 12:07:40 2024 +0700 chore(deps): freeze version
+commit 37938db4e113feec7a230c7dca860c08efddc9ec Author: n/a <n/a> Date: Sat Sep 21 12:12:53 2024 +0700 chore(Dockerfile): more essential system deps
