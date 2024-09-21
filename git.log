@@ -1,1 +1,1 @@
-commit a60d7bc077a792cee62ddd6269ab4898ee9c46ad Author: n/a <n/a> Date: Sat Sep 21 14:33:25 2024 +0700 refactor(Dockerfile): use multi stage
+commit eabd32bc1f3fcab2caa6dc5c086603236f75aa62 Author: n/a <n/a> Date: Sat Sep 21 17:59:57 2024 +0700 chore(deps): deprecated python-dotenv

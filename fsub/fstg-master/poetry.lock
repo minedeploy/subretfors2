@@ -187,20 +187,6 @@ files = [
 ]
 
 [[package]]
-name = "python-dotenv"
-version = "1.0.1"
-description = "Read key-value pairs from a .env file and set them as environment variables"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca"},
-    {file = "python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"},
-]
-
-[package.extras]
-cli = ["click (>=5.0)"]
-
-[[package]]
 name = "tgcrypto"
 version = "1.2.5"
 description = "Fast and Portable Cryptography Extension Library for Pyrogram"
@@ -323,4 +309,4 @@ test = ["Cython (>=0.29.36,<0.30.0)", "aiohttp (==3.9.0b0)", "aiohttp (>=3.8.1)"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "8cf066a8b5d0b056649b06794db996f260789ac41436583128f03c994e9dd3d2"
+content-hash = "50da8937255be9a438891bc925ae5d5472d891fc0480749d00db51f700f24a10"

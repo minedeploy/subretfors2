@@ -1,0 +1,26 @@
+name: Build and Push
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Docker-Push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Login
+      run: docker login -u dot7z -p ${{ secrets.DOCKER_TOKEN }}
+
+    - name: Build
+      run: |
+        docker build -t dot7z/fstg:latest .
+        docker tag dot7z/fstg:latest dot7z/fstg:${{ github.sha }}
+
+    - name: Push Latest Tag
+      run: docker push dot7z/fstg:latest
+
+    - name: Push SHA Tag
+      run: docker push dot7z/fstg:${{ github.sha }}

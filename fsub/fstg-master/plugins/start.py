@@ -28,8 +28,9 @@ async def start_handler(client: "bot", message: "Message") -> None:
 
         start_text = format_text_message(cache.start_text, user)
         user_buttons = await join_buttons(client, message, user.id)
+        list_of_admins = cache.admins + [config.OWNER_ID]
         if len(message.command) == 1:
-            buttons = admin_buttons() if user.id in cache.admins else user_buttons
+            buttons = admin_buttons() if user.id in list_of_admins else user_buttons
             await message.reply_text(start_text, quote=True, reply_markup=buttons)
         else:
             force_text = format_text_message(cache.force_text, user)
