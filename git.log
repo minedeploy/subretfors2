@@ -1,1 +1,1 @@
-commit 37938db4e113feec7a230c7dca860c08efddc9ec Author: n/a <n/a> Date: Sat Sep 21 12:12:53 2024 +0700 chore(Dockerfile): more essential system deps
+commit 8bda21df8f079e43056a3f08e1e560c0a2fd5953 Author: n/a <n/a> Date: Sat Sep 21 13:38:52 2024 +0700 feat: easy deploy to heroku
